@@ -1,0 +1,55 @@
+name: Build (Linux)
+
+on:
+  push:
+    paths:
+      - .github/workflows/build-linux.yml
+      - src/**
+      - xmake.lua
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        mode: [release, debug]
+        arch: [x86_64, arm64-v8a, mips64, mips64el]
+    runs-on: ubuntu-20.04 # for compatibility. todo: remove it
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup XMake
+        uses: xmake-io/github-action-setup-xmake@v1
+        with:
+          xmake-version: branch@dev
+
+      - uses: mlugg/setup-zig@v1
+        with:
+          version: 0.13.0
+
+      - name: Restore xmake cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.xmake
+            ~/.cache/zig
+          key: xmake-linux-${{ matrix.arch }}-${{ hashFiles('xmake.lua') }}
+          restore-keys: |
+            xmake-linux-${{ matrix.arch }}-${{ matrix.mode }}-
+
+      - name: Sync with repository
+        run: |
+          xmake repo -u
+
+      - name: Build for host
+        run: |
+          xmake f -a ${{ matrix.arch }} -m ${{ matrix.mode }} -p linux -v -y
+          xmake -v -y
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: allay-launcher-linux-${{ matrix.arch }}-${{ matrix.mode }}
+          path: |
+            build/linux/${{ matrix.arch }}/${{ matrix.mode }}
