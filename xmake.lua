@@ -1,0 +1,10 @@
+add_rules('mode.debug', 'mode.release')
+
+target('minesweeper')
+    set_kind('binary')
+    add_files('src/**.c')
+    add_includedirs('src')
+    set_version('0.1.0')
+    set_languages('c23')
+    set_optimize('fastest')
+    set_rundir('$(projectdir)')

@@ -1,0 +1,11 @@
+# ClangdD
+.cache
+.clangd
+
+# VSCode
+.vscode
+
+# Xmake
+.xmake
+
+build
