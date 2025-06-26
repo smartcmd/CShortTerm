@@ -51,3 +51,4 @@ jobs:
           name: minesweeper-windows-x64-${{ matrix.mode }}
           path: |
             build/windows/x64/${{ matrix.mode }}
+            resources

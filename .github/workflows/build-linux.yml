@@ -53,3 +53,4 @@ jobs:
           name: minesweeper-linux-${{ matrix.arch }}-${{ matrix.mode }}
           path: |
             build/linux/${{ matrix.arch }}/${{ matrix.mode }}
+            resources
