@@ -20,7 +20,7 @@ checking for Microsoft Visual Studio (x64) version ... 2022
 checking for Microsoft C/C++ Compiler (x64) version ... 19.42.34435
 ```
 
-本项目在Windows环境上可以通过编译，理论上也可以在其他平台通过编译（未测试）
+本项目笔者在本地Windows环境上可以通过编译，同时action上也配置了针对`windows`，`linux`和`macos`上各个架构的交叉编译，你也可以直接下载对应平台对应架构的构建产物来运行。
 
 ### 运行
 
