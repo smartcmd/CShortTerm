@@ -50,6 +50,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: allay-launcher-macosx-${{ matrix.arch }}-${{ matrix.mode }}
+          name: minesweeper-macosx-${{ matrix.arch }}-${{ matrix.mode }}
           path: |
             build/macosx/${{ matrix.arch }}/${{ matrix.mode }}
