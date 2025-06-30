@@ -117,7 +117,7 @@ void game__take_game_input(struct Game *game) {
   // Take in command
   printf("Enter a command: ");
   
-  scanf("%19s", rawInput);
+  fgets(rawInput, 20, stdin);
 
   // Parse command
   input = strtok(rawInput, " ");
