@@ -20,6 +20,7 @@
 #include <math.h>
 
 #include "menu/menu.h"
+#include "user/user.h"
 
 static const char *WELCOME =
     "    __  ____           _____                                  \n"
@@ -40,18 +41,20 @@ bool menu__take_input() {
   struct Game game;
   char input[4];
 
+  user__print_current_user();
   printf("\nStart New Game? Y/N: ");
   
-  fgets(input, 4, stdin);
+  scanf("%3s", input);
     
   if (strncmp(input, "N", 1) == 0 || strncmp(input, "n", 1) == 0 ||
       strncmp(input, "No", 2) == 0 || strncmp(input, "no", 2) == 0) {
+    printf("Saving user data and exiting...\n");
+    user__save();
     return false;
   } else {
     menu__build_board(&game);
     return true;
   }
-  
 }
 
 /**
@@ -73,7 +76,7 @@ bool menu__build_board(struct Game *game) {
 
   while (!valid) {
     printf("\nEnter Height (Max 24): ");
-    fgets(input, 5, stdin);
+    scanf("%4s", input);
     height = atoi(input);
     if (height < 25 && height > 1) {
       valid = true;
@@ -86,7 +89,7 @@ bool menu__build_board(struct Game *game) {
 
   while (!valid) {
     printf("\nEnter Width (Max 32): ");
-    fgets(input, 5, stdin);
+    scanf("%4s", input);
     width = atoi(input);
     if (width < 33 && width > 1) {
       valid = true;
@@ -99,7 +102,7 @@ bool menu__build_board(struct Game *game) {
 
   while (!valid) {
     printf("\nEnter Mines (Up to 26 percent of board area, max 200): ");
-    fgets(input, 5, stdin);
+    scanf("%4s", input);
     num_mines = atoi(input);
     if (num_mines < ceil((height * width) * .261) && num_mines > 0) {
       valid = true;
@@ -112,7 +115,6 @@ bool menu__build_board(struct Game *game) {
   game__play(game);
 
   return true;
-  
 }
 
 /**

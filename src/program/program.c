@@ -16,6 +16,7 @@
 
 #include "program/program.h"
 #include "menu/menu.h"
+#include "user/user.h"
 
 /* Global Variables */
 bool running = true;
@@ -26,6 +27,7 @@ bool running = true;
  */
 void program__run() {
   menu__print_welcome();
+  user__init();
 
   bool gameRan;
   

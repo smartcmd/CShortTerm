@@ -22,6 +22,7 @@
 #include "board/board.h"
 #include "game/game.h"
 #include "game/command_processor.h"
+#include "user/user.h"
 
 static const char *WIN =
     "  ___    ___ ________  ___  ___          ___       __   ___  ________      \n"
@@ -52,6 +53,10 @@ void game__print_win(struct Game *game) {
   // Calculate score based on time taken
   double score = difftime(game__get_end_time(game), game__get_start_time(game));
   printf("%f", score);
+
+  // Add score to user's total score
+  struct User *current_user = user__get_current_user();
+  current_user->total_scores += (int) score;
 }
 
 /**
@@ -112,7 +117,7 @@ void game__take_game_input(struct Game *game) {
   // Take in command
   printf("Enter a command: ");
   
-  fgets(rawInput, 20, stdin);
+  scanf("%19s", rawInput);
 
   // Parse command
   input = strtok(rawInput, " ");
