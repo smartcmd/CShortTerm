@@ -465,9 +465,7 @@ void board__print_board(struct Board *board) {
     for (int j = 0; j < board__get_y(board); j++) {
       char c = board->board_pointer[i][j];
       const char *bg = "\033[100m"; // Gray
-      if (c != '*') {
-        bg = "\033[0m"; // Black
-      } else if (c == '0') {
+      if (c == '0') {
         bg = "\033[42m"; // Green
       } else if (c == '1' || c == '2') {
         bg = "\033[43m"; // Yellow
@@ -477,6 +475,8 @@ void board__print_board(struct Board *board) {
         bg = "\033[45m"; // Purple
       } else if (c == '7' || c == '8') {
         bg = "\033[41m"; // Red
+      } else if (c != '*') {
+        bg = "\033[0m"; // Black
       }
       if (board__get_y(board) > 10) {
         printf("%s[ %c ]\033[0m", bg, c);

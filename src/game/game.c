@@ -34,7 +34,7 @@ static const char *WIN =
     "|\\___/ /        \\|_______|\\|_______|        \\|____________|\\|__|\\|__| \\|__|\n"
     "\\|___|/                                                                    \n"
     "\n"
-    "Score: \n";
+    "Score: %f\n";
 
 static const char *LOSS =
     "__  __               __                  \n"
@@ -48,11 +48,9 @@ static const char *LOSS =
  * This function prints the win screen for the game.
  */
 void game__print_win(struct Game *game) {
-  printf("%s", WIN);
-
   // Calculate score based on time taken
   double score = difftime(game__get_end_time(game), game__get_start_time(game));
-  printf("%f", score);
+  printf(WIN, score);
 
   // Add score to user's total score
   struct User *current_user = user__get_current_user();
@@ -152,7 +150,7 @@ void game__take_game_input(struct Game *game) {
   } else if (strncmp(input, "c", 1) == 0 || strncmp(input, "close", 5) == 0) {
     command_processor__close(game);
   } else {
-    printf("\nInvalid Command\n"); // TODO: Change when game design is finalized
+    printf("\nInvalid Command: %s\n", input); // TODO: Change when game design is finalized
     game->turns--;
   }
 

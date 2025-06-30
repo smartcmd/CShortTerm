@@ -112,6 +112,11 @@ bool menu__build_board(struct Game *game) {
   }
   
   game__build_game(width, height, num_mines, game);
+  
+  // Clear the input buffer to avoid issues with leftover characters ("\n")
+  int c;
+  while((c = getchar()) != '\n' && c != EOF);
+
   game__play(game);
 
   return true;

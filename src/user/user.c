@@ -36,16 +36,16 @@ static struct User* current_user = NULL;
 void user__init() {
     // Load user data
     FILE* fp = fopen(USER_FILE, "r");
-    user_count = 0;
-    if (!fp) return;
-    char name[MAX_NAME_LEN];
-    int score;
-    while (fscanf(fp, "%31s %d", name, &score) == 2 && user_count < MAX_USERS) {
-        user_list[user_count].name = strdup(name);
-        user_list[user_count].total_scores = score;
-        user_count++;
+    if (fp) {
+        char name[MAX_NAME_LEN];
+        int score;
+        while (fscanf(fp, "%31s %d", name, &score) == 2 && user_count < MAX_USERS) {
+            user_list[user_count].name = strdup(name);
+            user_list[user_count].total_scores = score;
+            user_count++;
+        }
+        fclose(fp);
     }
-    fclose(fp);
 
     // Choose a user
     user__print_user_list();
