@@ -21,6 +21,14 @@
 
 #include "menu/menu.h"
 
+static const char *WELCOME =
+    "    __  ____           _____                                  \n"
+    "   /  |/  (_)___  ___ / ___/      _____  ___  ____  ___  _____\n"
+    "  / /|_/ / / __ \\/ _ \\\\__ \\ | /| / / _ \\/ _ \\/ __ \\/ _ \\/ ___/\n"
+    " / /  / / / / / /  __/__/ / |/ |/ /  __/  __/ /_/ /  __/ /    \n"
+    "/_/  /_/_/_/ /_/\\___/____/|__/|__/\\___/\\___/ .___/\\___/_/     \n"
+    "                              coded in C  /_/ v. 0.1.0        \n";
+
 /**
  * In current implementation with simple yes/no menu, this
  * function only takes yes or no AND process the game to be run.
@@ -111,14 +119,5 @@ bool menu__build_board(struct Game *game) {
  * This function prints the welcome screen for the game.
  */
 void menu__print_welcome() {
-  FILE *fp;
-  fp = fopen("resources/game/welcome.txt", "r");
-  char buff[255];
-
-  for (int i = 0; i < 6; ++i) {
-    fgets(buff, 255, (FILE*)fp);
-    printf("%s", buff );
-  }
-  
-  fclose(fp);
+  printf("%s", WELCOME);
 }

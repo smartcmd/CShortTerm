@@ -23,45 +23,42 @@
 #include "game/game.h"
 #include "game/command_processor.h"
 
+static const char *WIN =
+    "  ___    ___ ________  ___  ___          ___       __   ___  ________      \n"
+    " |\\  \\  /  /|\\   __  \\|\\  \\|\\  \\        |\\  \\     |\\  \\|\\  \\|\\   ___  \\    \n"
+    " \\ \\  \\/  / | \\  \\|\\  \\ \\  \\\\\\  \\       \\ \\  \\    \\ \\  \\ \\  \\ \\  \\\\ \\  \\   \n"
+    "  \\ \\    / / \\ \\  \\\\\\  \\ \\  \\\\\\  \\       \\ \\  \\  __\\ \\  \\ \\  \\ \\  \\\\ \\  \\  \n"
+    "   \\/  /  /   \\ \\  \\\\\\  \\ \\  \\\\\\  \\       \\ \\  \\|__\\_\\  \\ \\  \\ \\  \\\\ \\  \\ \n"
+    " __/  / /      \\ \\_______\\ \\_______\\       \\ \\____________\\ \\__\\ \\__\\\\ \\__\\\n"
+    "|\\___/ /        \\|_______|\\|_______|        \\|____________|\\|__|\\|__| \\|__|\n"
+    "\\|___|/                                                                    \n"
+    "\n"
+    "Score: \n";
+
+static const char *LOSS =
+    "__  __               __                  \n"
+    "\\ \\/ /___  __  __   / /   ____  ________ \n"
+    " \\  / __ \\/ / / /  / /   / __ \\/ ___/ _ \\\n"
+    " / / /_/ / /_/ /  / /___/ /_/ (__  )  __/\n"
+    "/_/\\____/\\__,_/  /_____/\\____/____/\\___/ \n"
+    "                                         \n";
+
 /**
  * This function prints the win screen for the game.
  */
 void game__print_win(struct Game *game) {
-  FILE *fp;
-  fp = fopen("resources/game/win.txt", "r");
-  char buff[255];
+  printf("%s", WIN);
 
-  for (int i = 0; i < 10; ++i) {
-    fgets(buff, 255, (FILE*)fp);
-    printf("%s", buff );
-  }
-
-  /* double board_size = board__get_x(&game->board) * board__get_y(&game->board); */
-  /* double turns_count = game->turns; */
-  
-  /* double score = (board_size / turns_count) * 100.0; */
-
+  // Calculate score based on time taken
   double score = difftime(game__get_end_time(game), game__get_start_time(game));
-  
   printf("%f", score);
-
-  fclose(fp);
 }
 
 /**
  * This function prints the loss screen for the game.
  */
 void game__print_loss() {
-  FILE *fp;
-  fp = fopen("resources/game/loss.txt", "r");
-  char buff[255];
-
-  for (int i = 0; i < 5; ++i) {
-    fgets(buff, 255, (FILE*)fp);
-    printf("%s", buff );
-  }
-  
-  fclose(fp);
+  printf("%s", LOSS);
 }
 
 /**

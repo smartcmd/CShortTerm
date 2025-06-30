@@ -28,7 +28,7 @@ checking for Microsoft C/C++ Compiler (x64) version ... 19.42.34435
 ```cmd
 xmake run
 ```
-此命令将自动构建本项目，输出exe文件到build/<platform>/<arch>/<mode>下，并在项目根目录运行exe。请注意，只能在项目根目录运行exe文件，因为程序在运行时需要读取同目录下`resources/game`下的三个资源文件：`loss.txt`, `welcome.txt`, `win.txt`。为避免出现编码问题，游戏内全部使用英文输出。
+此命令将自动构建本项目，输出exe文件到build/<platform>/<arch>/<mode>下，并运行exe。为避免出现编码问题，游戏内全部使用英文输出。
 
 也可以只编译项目而不运行：
 ```cmd
@@ -78,7 +78,7 @@ Enter a command:
 Enter a command: help
 Commands:
 	r/reveal [row] [col]	Reveal a square
-	m/mark [row] [col]		Flag a square
+	f/flag [row] [col]		Flag a square
 	g/guess [row] [col]		Guess a square
 	h/help        		Print help
 	q/quit        		Quit to menu
