@@ -27,6 +27,12 @@ static struct User user_list[MAX_USERS];
 static int user_count = 0;
 static struct User* current_user = NULL;
 
+/**
+ * @brief Initialize user system, load users from file, and select or add a user.
+ *
+ * This function loads all users from USER_FILE, prints the user list,
+ * and prompts the user to select or add a user. Sets the current_user pointer.
+ */
 void user__init() {
     // Load user data
     FILE* fp = fopen(USER_FILE, "r");
@@ -54,6 +60,11 @@ void user__init() {
     }
 }
 
+/**
+ * @brief Save all users to file.
+ *
+ * This function writes all users in user_list to USER_FILE.
+ */
 void user__save() {
     FILE* fp = fopen(USER_FILE, "w");
     if (!fp) {
@@ -66,6 +77,11 @@ void user__save() {
     fclose(fp);
 }
 
+/**
+ * @brief Print the list of all users.
+ *
+ * If no users exist, prints a message. Otherwise, prints each user's name and score.
+ */
 void user__print_user_list() {
     if (user_count == 0) {
         printf("No users found. Please add a user.\n");
@@ -78,6 +94,12 @@ void user__print_user_list() {
     }
 }
 
+/**
+ * @brief Choose a user by name.
+ *
+ * @param name The name of the user to select.
+ * @return Pointer to the selected User struct, or NULL if not found.
+ */
 struct User* user__choose_user(char* name) {
     for (int i = 0; i < user_count; ++i) {
         if (strcmp(user_list[i].name, name) == 0) {
@@ -89,6 +111,12 @@ struct User* user__choose_user(char* name) {
     return NULL;
 }
 
+/**
+ * @brief Add a new user by name.
+ *
+ * @param name The name of the new user to add.
+ * @return Pointer to the new User struct, or NULL if failed.
+ */
 struct User* user__add_user(char* name) {
     if (user_count >= MAX_USERS) return false;
     for (int i = 0; i < user_count; ++i) {
@@ -101,6 +129,11 @@ struct User* user__add_user(char* name) {
     return current_user;
 }
 
+/**
+ * @brief Print the current user.
+ *
+ * Prints the name and score of the current user, or a message if none is selected.
+ */
 void user__print_current_user() {
     if (current_user) {
         printf("Current user: %s (score: %d)\n", current_user->name, current_user->total_scores);
@@ -109,6 +142,11 @@ void user__print_current_user() {
     }
 }
 
+/**
+ * @brief Get the current user pointer.
+ *
+ * @return Pointer to the current User struct, or NULL if none is selected.
+ */
 struct User* user__get_current_user() {
     return current_user;
 }
