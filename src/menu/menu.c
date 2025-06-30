@@ -28,7 +28,7 @@ static const char *WELCOME =
     "  / /|_/ / / __ \\/ _ \\\\__ \\ | /| / / _ \\/ _ \\/ __ \\/ _ \\/ ___/\n"
     " / /  / / / / / /  __/__/ / |/ |/ /  __/  __/ /_/ /  __/ /    \n"
     "/_/  /_/_/_/ /_/\\___/____/|__/|__/\\___/\\___/ .___/\\___/_/     \n"
-    "                              coded in C  /_/ v. 0.1.0        \n";
+    "                              coded in C  /_/ v. 0.2.0        \n";
 
 /**
  * In current implementation with simple yes/no menu, this
