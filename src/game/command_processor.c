@@ -131,8 +131,8 @@ bool command_processor__guess(int x, int y, struct Game *game) {
 void command_processor__help() {
   printf("Commands:\n");
   printf("\tr/reveal [row] [col]\tReveal a square\n");
-  printf("\tf/flag [row] [col]\t\tFlag a square\n");
-  printf("\tg/guess [row] [col]\t\tGuess a square\n");
+  printf("\tf/flag [row] [col]\tFlag a square\n");
+  printf("\tg/guess [row] [col]\tGuess a square\n");
   printf("\th/help        \t\tPrint help\n");
   printf("\tq/quit        \t\tQuit to menu\n");
   printf("\tc/close       \t\tQuit the program\n");
