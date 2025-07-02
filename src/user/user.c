@@ -118,9 +118,9 @@ struct User* user__choose_user(char* name) {
  * @return Pointer to the new User struct, or NULL if failed.
  */
 struct User* user__add_user(char* name) {
-    if (user_count >= MAX_USERS) return false;
+    if (user_count >= MAX_USERS) return NULL;
     for (int i = 0; i < user_count; ++i) {
-        if (strcmp(user_list[i].name, name) == 0) return false;
+        if (strcmp(user_list[i].name, name) == 0) return NULL;
     }
     user_list[user_count].name = strdup(name);
     user_list[user_count].total_scores = 0;
